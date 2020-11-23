@@ -1,51 +1,52 @@
 #pragma once
 #include <cstddef>
 
-
 namespace task {
 
-
 class list {
+ public:
+  list();
+  list(size_t count, const int& value);
 
-public:
+  list(int);
 
-    list();
-    list(size_t count, const int& value = int());
+  list(const list&);
+  ~list();
+  list& operator=(const list& other);
 
-    ~list();
-    list& operator=(const list& other);
+  int& front();
+  const int& front() const;
 
+  int& back();
+  const int& back() const;
 
-    int& front();
-    const int& front() const;
+  bool empty() const;
+  size_t size() const;
+  void clear();
 
-    int& back();
-    const int& back() const;
+  void push_back(const int& value);
+  void pop_back();
+  void push_front(const int& value);
+  void pop_front();
+  void resize(size_t count);
+  void swap(list& other);
 
+  void remove(const int& value);
+  void unique();
+  void sort();
 
-    bool empty() const;
-    size_t size() const;
-    void clear();
+ private:
+  struct _node {
+    _node(int);
+    _node* next;
+    _node* prev;
+    int value;
+  };
 
-
-    void push_back(const int& value);
-    void pop_back();
-    void push_front(const int& value);
-    void pop_front();
-    void resize(size_t count);
-    void swap(list& other);
-
-
-    void remove(const int& value);
-    void unique();
-    void sort();
-
-    // Your code goes here?..
-
-private:
-
-    // Your code goes here...
-
+  _node* _head;
+  _node* _tail;
+  size_t _size;
+  _node* _remove(int, _node*);
 };
 
-}  // namespace task
+}
